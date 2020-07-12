@@ -22,6 +22,7 @@ class Quilljs extends Trix
         $this->height();
         $this->fullWidth();
         $this->maxFileSize(2);
+        $this->syntaxName();
         $this->withMeta([
             'options'=> config('quilljs'),
         ]);
@@ -68,5 +69,10 @@ class Quilljs extends Trix
     public function maxFileSize(int $value = 2)
     {
         return $this->withMeta(['maxFileSize' => $value]);
+    }
+
+    public function syntaxName(string $value = 'monokai-sublime')
+    {
+        return $this->withMeta(['syntaxName' => $value]);
     }
 }

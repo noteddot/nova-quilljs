@@ -22,6 +22,7 @@ import { ImageExtend, QuillWatch } from "quill-image-extend-module";
 import { VideoBlot } from "../../quilljs/VideoBlot";
 import Tooltip from "quill/ui/tooltip";
 import { CustomImageSpec } from "../../quilljs/CustomImageSpec";
+import hljs from "highlight.js";
 import "quill/dist/quill.core.css";
 import "quill/dist/quill.snow.css";
 import "quill/dist/quill.bubble.css";
@@ -86,6 +87,9 @@ export default {
                 this.quill.theme.tooltip.edit("video");
               }
             }
+          },
+          syntax: {
+            highlight: text => hljs.highlightAuto(text).value
           }
         }
       }
@@ -152,6 +156,11 @@ export default {
         height: this.field.height + 41 + "px",
         "padding-bottom": "40px"
       };
+    }
+  },
+  created() {
+    if (this.field.syntaxName) {
+      require(`highlight.js/styles/${this.field.syntaxName}.css`)
     }
   },
   mounted() {
